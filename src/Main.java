@@ -3,17 +3,55 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import Config.Configuration;
+import JavaFX.Finalizable;
+
+import java.io.File;
 
 public class Main extends Application {
 
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("JavaFX/sample.fxml"));
-        primaryStage.setTitle("MazeRunner");
-        primaryStage.setScene(new Scene(root, 300, 275));
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Maze Generation & Search Algorithm");
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("JavaFX/sample.fxml"));
+        Parent root = loader.load();
+        primaryStage.setScene(new Scene(root));
+        load(primaryStage);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(event -> {
+            Object controller = loader.getController();
+            if(controller instanceof Finalizable) {
+                ((Finalizable) controller).finalize(loader.getLocation(), loader.getResources());
+            }
+            save(primaryStage);
+        });
     }
 
+    private void load(Stage primaryStage) {
+        Configuration config = new Configuration(new File("windows.config"));
+        primaryStage.setX(config.get("x", 10.0));
+        primaryStage.setY(config.get("y", 10.0));
+        primaryStage.setWidth(config.get("width", 800.0));
+        primaryStage.setHeight(config.get("height", 600.0));
+        if(config.isChanged()) {
+            config.save();
+        }
+    }
+
+    private void save(Stage primaryStage) {
+        Configuration config = new Configuration(new File("windows.config"));
+        if(!config.get("save", true)) {
+            return;
+        }
+        config.set("x", primaryStage.getX());
+        config.set("y", primaryStage.getY());
+        config.set("width", primaryStage.getWidth());
+        config.set("height", primaryStage.getHeight());
+        config.save();
+    }
 
     public static void main(String[] args) {
         launch(args);
