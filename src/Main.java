@@ -3,8 +3,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import Config.Configuration;
-import JavaFX.Finalizable;
+import config.Configuration;
+import javaFX.Finalizable;
 
 import java.io.File;
 
@@ -14,8 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Maze Generation & Search Algorithm");
-
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("JavaFX/sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("javaFX/sample.fxml"));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
         load(primaryStage);
