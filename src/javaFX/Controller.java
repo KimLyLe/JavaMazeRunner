@@ -642,8 +642,8 @@ public class Controller implements Initializable, Finalizable {
     }
 
     private enum PlayState {
-        GENERATION("再生中：生成"),
-        SEARCH("再生中：探索"),
+        GENERATION("During rendering: Generate"),
+        SEARCH("During rendering: Search"),
         ;
 
         final String text;
@@ -654,9 +654,9 @@ public class Controller implements Initializable, Finalizable {
     }
 
     private enum NextAction {
-        NONE("何もしない"),
-        GENERATION("新規生成"),
-        SEARCH("新規探索"),
+        NONE("Do nothing"),
+        GENERATION("New generation"),
+        SEARCH("New search"),
         ;
 
         final String text;
@@ -667,9 +667,9 @@ public class Controller implements Initializable, Finalizable {
     }
 
     private enum NextPlay {
-        NONE("何もしない"),
-        GENERATION("「再生中：生成」に切替"),
-        SEARCH("「再生中：探索」に切替"),
+        NONE("Do nothing"),
+        GENERATION("Switch to 'Play now: Generate'"),
+        SEARCH("Switch to 'Playing: Search'"),
         ;
 
         final String text;

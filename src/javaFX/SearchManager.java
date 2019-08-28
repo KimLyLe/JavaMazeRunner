@@ -12,11 +12,11 @@ public class SearchManager {
     private final List<Function<Random, IMoveAlgorithm>> searches = new ArrayList<>();
 
     public SearchManager() {
-        register("ランダムマウス", (r) -> new RandomMouseAlgorithm(r));
-        register("山登り法", (r) -> new HillClimbingAlgorithm(r));
-        register("ウォールフォロワ（深さ優先）", (r) -> new WallFollowerAlgorithm());
-        register("幅優先", (r) -> new BreadthFirstAlgorithm());
-        register("足立法", (r) -> new AdachiAlgorithm(r));
+        register("Random mouse", (r) -> new RandomMouseAlgorithm(r));
+        register("Mountain climbing", (r) -> new HillClimbingAlgorithm(r));
+        register("Wall follower (Depthpriority)", (r) -> new WallFollowerAlgorithm());
+        register("Wideness priority", (r) -> new BreadthFirstAlgorithm());
+        register("Adachi Rule", (r) -> new AdachiAlgorithm(r));
     }
 
     private void register(String key, Function<Random, IMoveAlgorithm> search) {

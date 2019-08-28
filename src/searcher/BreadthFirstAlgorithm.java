@@ -68,7 +68,7 @@ public class BreadthFirstAlgorithm implements IMoveAlgorithm {
                     }
                 }
             }
-            // 到達済みの分岐路
+            // Branch is reached!
             if(!node.children.isEmpty()) {
                 Direction next = prevDirectionReverse;
                 for(int i = 0; i < 4; i++) {
@@ -93,7 +93,7 @@ public class BreadthFirstAlgorithm implements IMoveAlgorithm {
                 return next;
             }
         }
-        // 行き止まり
+        // Impasse
         if(node.parent == null) {
             return null;
         }
